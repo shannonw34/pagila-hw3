@@ -31,6 +31,16 @@ $(files-to-prompt sql)
 ===== DATABASE SCHEMA =====
 $(docker compose exec -T pg psql -c '\d+ *')
 
+docker compose exec -T pg psql -Atc "
+SELECT
+    table_name || ': ' ||
+    string_agg(column_name || ' ' || data_type, ', ' ORDER BY ordinal_position)
+FROM information_schema.columns
+WHERE table_schema = 'public'
+GROUP BY table_name
+ORDER BY table_name;
+"
+
 ===== TEST FAILURES =======
 
 $(cat /tmp/out)
