@@ -31,4 +31,4 @@ jobs:
         sleep 20
 
         # run the tests
-        docker compose exec -T pg ./run_tests.sh
+        ./run_tests.sh
