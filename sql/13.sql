@@ -24,7 +24,7 @@ FROM (
         SUM(p.amount) AS revenue,
         RANK() OVER (
             PARTITION BY fa.actor_id
-            ORDER BY SUM(p.amount) DESC
+            ORDER BY SUM(p.amount) DESC, fa.film_id
         ) AS rank
     FROM film_actor fa
     JOIN inventory i ON i.film_id = fa.film_id
