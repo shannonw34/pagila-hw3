@@ -15,7 +15,7 @@ FROM (
            count(r.rental_id) AS "total rentals",
            row_number() OVER (
                PARTITION BY c.name
-               ORDER BY count(r.rental_id) DESC, f.title
+               ORDER BY count(r.rental_id) DESC, f.title DESC
            ) AS rn
     FROM category c
     JOIN film_category fc ON fc.category_id = c.category_id
