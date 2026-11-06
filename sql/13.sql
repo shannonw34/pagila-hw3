@@ -35,3 +35,4 @@ FROM (
 JOIN actor a ON a.actor_id = ranked.actor_id
 JOIN film f ON f.film_id = ranked.film_id
 WHERE ranked.rank <= 3
+ORDER BY a.actor_id, ranked.rank, f.film_id;
