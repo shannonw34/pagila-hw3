@@ -9,6 +9,8 @@ cd "$PROJECT" || exit 1
 source "$HOME/dic-venv/bin/activate" || exit 1
 source "$HOME/dic-venv/lib/python3.12/site-packages/dic/scripts/dic.sh" -f || exit 1
 
+export DIC_MODEL=openrouter+deepseek
+
 docker compose up -d || exit 1
 
 for i in $(seq 1 100); do
@@ -37,7 +39,7 @@ for i in $(seq 1 100); do
 
     echo "Working on $FAILED_SQL..."
 
-    DIC_SESSION="pagila-hw3-$i" committe -- -m openrouter+deepseek <<EOF_PROMPT
+    DIC_SESSION="pagila-hw3-$i" committe <<EOF_PROMPT
 You are solving one Pagila HW3 SQL assignment.
 
 Modify ONLY this file: $FAILED_SQL
