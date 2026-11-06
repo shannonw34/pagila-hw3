@@ -18,3 +18,13 @@
  * ```
  * This problem should be solved by a self join on the "film_category" table.
  */
+
+SELECT f.title
+FROM film f
+JOIN film_category fc USING (film_id)
+JOIN film_category fc2 USING (category_id)
+JOIN film f2 ON f2.film_id = fc2.film_id
+WHERE f2.title = 'AMERICAN CIRCUS'
+GROUP BY f.film_id, f.title
+HAVING count(*) >= 2
+ORDER BY f.title;
